@@ -1,0 +1,27 @@
+﻿# Entorno virtual
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Pytest
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+notebooks/*_executed.ipynb
+
+# Datos obtenidos o generados
+data/raw/
+data/interim/
+data/processed/
+
+# Base reconstruible
+*.duckdb
+
+# Editores y sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
