@@ -1,6 +1,6 @@
 """Extraccion reproducible de los CSV publicos de la DGOJ.
 
-Contrato de esta fase (ver docs/00_project_contract.md, Fase 2):
+Contrato de esta fase:
 - Se guardan exactamente los bytes recibidos en data/raw, sin renombrar
   columnas, cambiar tipos ni reserializar el CSV.
 - Encoding y delimitador se detectan solo para fines de inspeccion; no se

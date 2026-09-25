@@ -248,10 +248,9 @@ def _write_report(profiles: list[DatasetProfile], all_notes: dict[str, list[str]
     lines.append(
         "5. **Formato decimal**: no se han observado separadores decimales "
         "(coma o punto) en ninguna columna numérica de las cuatro fuentes; "
-        "todos los importes están expresados como enteros. El diccionario "
-        "oficial de datos de la DGOJ (`data/external/dgoj_data_dictionary.pdf`, "
-        "ver `data/external/README.md`) confirma que todos los importes "
-        "están **en euros**; se interpretan como euros enteros, no céntimos. "
+        "todos los importes están expresados como enteros. "
+        "El diccionario oficial de datos de la DGOJ confirma que los importes "
+        "se expresan en euros; esta interpretación se conserva en el modelo procesado."
         "Hipótesis cerrada."
     )
     lines.append(
