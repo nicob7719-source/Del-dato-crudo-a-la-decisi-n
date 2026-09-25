@@ -60,6 +60,71 @@ El notebook versionado contiene una instantánea analizada con cobertura desde
 una ejecución futura puede incorporar revisiones o periodos nuevos publicados
 por la DGOJ.
 
+## Guía pedagógica
+
+Este proyecto está diseñado como una actividad didáctica de aproximadamente **8 horas**, orientada a alumnado de Data Analytics con conocimientos básicos de Python y SQL. El objetivo no es únicamente obtener resultados, sino recorrer de forma reproducible el ciclo completo del dato: desde la fuente pública hasta una recomendación de negocio documentada, incluyendo calidad del dato, análisis estadístico, visualización y reflexión ética.
+
+### Objetivos de aprendizaje
+
+Al completar la actividad, una persona estudiante debería ser capaz de:
+
+* identificar la granularidad, claves y limitaciones de un dataset real;
+* distinguir entre datos raw, procesados y métricas derivadas;
+* evaluar calidad del dato: nulos, duplicados, tipos, cobertura y consistencia;
+* comprender por qué la semántica de negocio determina cómo debe agregarse una variable;
+* construir y consultar un pequeño modelo analítico con DuckDB y SQL;
+* utilizar `GROUP BY`, `WHERE`, `JOIN`, agregaciones y ordenación para responder preguntas de negocio;
+* realizar un EDA con Pandas y diferenciar asociación, significancia estadística y causalidad;
+* seleccionar visualizaciones coherentes con la pregunta analítica;
+* transformar resultados técnicos en conclusiones comprensibles y recomendaciones accionables;
+* reconocer limitaciones, sesgos y riesgos éticos al interpretar datos agregados.
+
+### Propuesta de uso en clase
+
+Una posible distribución de la actividad es:
+
+| Sesión | Contenido                          | Actividad principal                                                                     |
+| ------ | ---------------------------------- | --------------------------------------------------------------------------------------- |
+| 1      | Fuente, reproducibilidad y calidad | Explorar los CSV, identificar granularidad, claves, nulos y problemas de calidad        |
+| 2      | Transformación y SQL               | Construir las tablas analíticas y responder las preguntas de negocio mediante SQL       |
+| 3      | EDA, estadística y visualización   | Analizar distribuciones, relaciones, comparación temporal y construir visualizaciones   |
+| 4      | Storytelling y ética               | Interpretar resultados, discutir causalidad y limitaciones y formular una recomendación |
+
+La actividad puede realizarse de forma individual o en pequeños grupos. Una dinámica útil consiste en pedir primero al alumnado que formule hipótesis sobre los datos y contrastarlas posteriormente mediante SQL y Python.
+
+### Adaptación a distintos niveles
+
+Para alumnado inicial puede trabajarse directamente con los CSV procesados y concentrar la actividad en Pandas, SQL y visualización.
+
+En un nivel intermedio puede incluirse la transformación desde los datos raw, la identificación de claves, el diseño de la tabla temporal y la discusión sobre métricas aditivas y no aditivas.
+
+Para alumnado avanzado pueden abordarse aspectos adicionales como reproducibilidad, hashing, pruebas automatizadas, series temporales, autocorrelación, tamaños de efecto y las limitaciones de una comparación pre/post.
+
+### Qué puede salir mal
+
+Algunos problemas habituales que pueden aparecer al reproducir el proyecto son:
+
+* entorno Python o dependencias incompatibles;
+* ejecución desde una ruta distinta a la raíz del repositorio;
+* cambios en las fuentes públicas respecto al snapshot congelado;
+* problemas de encoding o delimitador en CSV;
+* uso incorrecto de tipos numéricos o temporales;
+* intentar sumar métricas que representan snapshots, como cuentas activas;
+* interpretar correlaciones temporales como relaciones causales.
+
+El `README`, el informe de calidad y los scripts del proyecto documentan estas decisiones para facilitar su diagnóstico.
+
+### Enfoque crítico y ético
+
+Los datos utilizados son agregados a nivel de mercado. Por tanto, permiten estudiar evolución, concentración e intensidad agregada, pero **no permiten identificar ni diagnosticar comportamiento problemático a nivel individual**.
+
+La actividad utiliza esta limitación como parte del aprendizaje: una señal estadística puede justificar una investigación adicional, pero no debe convertirse automáticamente en una conclusión causal o en una decisión sobre personas.
+
+El caso permite discutir conceptos como falacia ecológica, sesgo de cobertura, falsos positivos y la diferencia entre objetivos comerciales de CRM y objetivos de Player Protection.
+
+La unidad didáctica ampliada está disponible en [`docs/unidad_didactica.pdf`](docs/unidad_didactica.pdf).
+
+
 ## Qué se puede concluir
 
 El proyecto permite describir tendencias del mercado, calcular métricas de
