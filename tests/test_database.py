@@ -69,7 +69,7 @@ def test_no_negative_deposits_or_active_accounts(db_path):
     assert bad == 0
 
 
-def test_analysis_queries_run_and_return_rows():
+def test_analysis_queries_run_and_return_rows(db_path):
     project_root = Path(__file__).resolve().parent.parent
     sql_text = (project_root / "sql" / "analysis.sql").read_text(encoding="utf-8")
     code_lines = [line for line in sql_text.splitlines() if not line.strip().startswith("--")]
@@ -77,7 +77,7 @@ def test_analysis_queries_run_and_return_rows():
 
     assert len(statements) == 4, "Se esperan exactamente 4 consultas en sql/analysis.sql"
 
-    con = duckdb.connect(str(project_root / "responsible_gambling.duckdb"), read_only=True)
+    con = duckdb.connect(str(db_path), read_only=True)
     try:
         for stmt in statements:
             df = con.execute(stmt).fetchdf()

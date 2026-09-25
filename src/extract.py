@@ -204,7 +204,12 @@ def run_extraction(refresh: bool = False) -> list[ExtractionRecord]:
     for name, url in SOURCES.items():
         record = extract_one(name, url, refresh=refresh, manifest=manifest)
         records.append(record)
-        manifest[name] = asdict(record)
+        # The manifest describes the frozen local snapshot.
+        # If the remote source has changed but --refresh was not explicitly
+        # requested, preserve the existing manifest entry because the local
+        # file has not changed either.
+        if record.status != "skipped_conflict":
+            manifest[name] = asdict(record)
         print(
             f"[{record.status}] {name}: {record.rows} filas x {record.columns} "
             f"columnas, {record.bytes} bytes, sha256={record.sha256[:12]}..."

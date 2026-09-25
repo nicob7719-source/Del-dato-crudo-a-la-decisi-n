@@ -261,13 +261,13 @@ def _write_report(profiles: list[DatasetProfile], all_notes: dict[str, list[str]
         "total de mercado calculado de forma independiente."
     )
     lines.append(
-        "7. **Trimestre más reciente completo**: **no**. `deposits_withdrawals` "
-        "tiene la columna `Nº de depósitos` en 0 de forma consistente desde "
-        "enero de 2018 en adelante (93 de 153 filas), lo que indica que la "
-        "DGOJ dejó de reportar esa métrica concreta, no que falten datos "
-        "recientes puntuales. El resto de columnas de las cuatro fuentes sí "
-        "tiene valores no nulos hasta septiembre de 2025 (el trimestre 2025.T3 "
-        "solo tiene 3 meses, como es correcto: julio, agosto, septiembre)."
+        "7. **Trimestre más reciente completo**: **sí**. Las cuatro fuentes "
+        "contienen datos hasta septiembre de 2025, por lo que 2025.T3 incluye "
+        "sus tres meses completos: julio, agosto y septiembre. "
+        "`deposits_withdrawals` tiene la columna `Nº de depósitos` en 0 de forma "
+        "consistente desde enero de 2018 en adelante (93 de 153 filas), lo que "
+        "indica que la DGOJ dejó de reportar esa métrica concreta, pero esto no "
+        "implica que el trimestre 2025.T3 esté incompleto."
     )
     lines.append(
         "8. **Coincidencia de fechas y periodos entre fuentes**: sí, las "
@@ -287,7 +287,7 @@ def _write_report(profiles: list[DatasetProfile], all_notes: dict[str, list[str]
     lines.append("")
     lines.append("**Hipótesis pendientes, a decidir en Fase 4:**")
     lines.append("- Si `market_quarterly` se construye agregando los 3 meses de cada trimestre (suma para flujos, último mes o promedio para `Cuentas activas` al ser una fotografía) — a decidir explícitamente y documentar la fórmula por métrica.")
-    lines.append("- Si el trimestre 2025.T3 (incompleto en calendario natural pero completo en los 3 meses publicados: jul-ago-sep) debe incluirse en comparaciones año contra año o marcarse aparte.")
+    lines.append("- 2025.T3 es un trimestre completo; sin embargo, 2025 es un año parcial porque no se dispone de T4, por lo que las comparaciones anuales con años completos deben tratarse con cautela.")
     lines.append("")
 
     lines.append("## Qué NO se ha hecho en esta fase")

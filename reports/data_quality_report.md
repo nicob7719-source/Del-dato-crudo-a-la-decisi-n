@@ -56,7 +56,7 @@ Generado por `src/profile.py` sobre los CSV congelados en `data/raw/`. No se ha 
 4. **Cambios de nomenclatura**: no se han detectado variantes ortográficas de la columna `Juego` a lo largo de la serie (17 categorías estables, mismo recuento de filas cada una).
 5. **Formato decimal**: no se han observado separadores decimales (coma o punto) en ninguna columna numérica de las cuatro fuentes; todos los importes están expresados como enteros. El diccionario oficial de datos de la DGOJ (`data/external/dgoj_data_dictionary.pdf`, ver `data/external/README.md`) confirma que todos los importes están **en euros**; se interpretan como euros enteros, no céntimos. Hipótesis cerrada.
 6. **Filas agregadas que producirían doble conteo**: no detectadas como filas explícitas; el riesgo real de doble conteo está en cómo se agregue `ggr_turnover` por modalidad si además se compara con un total de mercado calculado de forma independiente.
-7. **Trimestre más reciente completo**: **no**. `deposits_withdrawals` tiene la columna `Nº de depósitos` en 0 de forma consistente desde enero de 2018 en adelante (93 de 153 filas), lo que indica que la DGOJ dejó de reportar esa métrica concreta, no que falten datos recientes puntuales. El resto de columnas de las cuatro fuentes sí tiene valores no nulos hasta septiembre de 2025 (el trimestre 2025.T3 solo tiene 3 meses, como es correcto: julio, agosto, septiembre).
+7. **Trimestre más reciente completo**: **sí**. Las cuatro fuentes contienen datos hasta septiembre de 2025, por lo que 2025.T3 incluye sus tres meses completos: julio, agosto y septiembre. `deposits_withdrawals` tiene la columna `Nº de depósitos` en 0 de forma consistente desde enero de 2018 en adelante (93 de 153 filas), lo que indica que la DGOJ dejó de reportar esa métrica concreta, pero esto no implica que el trimestre 2025.T3 esté incompleto.
 8. **Coincidencia de fechas y periodos entre fuentes**: sí, las cuatro fuentes comparten exactamente el mismo rango mensual (enero 2013 a septiembre 2025, 153 meses), lo que hace viable un `dim_period` común para el `JOIN` de la Fase 5.
 
 ## Propuesta de contrato de datos y transformaciones (Fase 4)
@@ -69,7 +69,7 @@ Generado por `src/profile.py` sobre los CSV congelados en `data/raw/`. No se ha 
 
 **Hipótesis pendientes, a decidir en Fase 4:**
 - Si `market_quarterly` se construye agregando los 3 meses de cada trimestre (suma para flujos, último mes o promedio para `Cuentas activas` al ser una fotografía) — a decidir explícitamente y documentar la fórmula por métrica.
-- Si el trimestre 2025.T3 (incompleto en calendario natural pero completo en los 3 meses publicados: jul-ago-sep) debe incluirse en comparaciones año contra año o marcarse aparte.
+- 2025.T3 es un trimestre completo; sin embargo, 2025 es un año parcial porque no se dispone de T4, por lo que las comparaciones anuales con años completos deben tratarse con cautela.
 
 ## Qué NO se ha hecho en esta fase
 
